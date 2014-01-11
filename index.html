@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link href="jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
+<link href="jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/themes1/jquery.mobile.icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="css/themes1/ngn_migration1.css" rel="stylesheet" type="text/css"/>
+<link href="css/themes1/ngn_migration1.min.css" rel="stylesheet" type="text/css"/>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+ $(document).ready(function(){
+	 
+	 $("#page2-click").click(function(){
+		
+		 items ='';
+        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending.php?jsoncallback=?", function(data){
+            
+            $.each(data, function(i,outputt){                   
+            items += '<li><a href="#" id="' + i + '">' +outputt.site_name+":"+ outputt.mig_date+ '</a></li>';
+            });
+           $('#listitem2').html(items);
+            });
+		 });
+    });
+
+</script>
+</head> 
+<body> 
+
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>NGN Migration</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a id="page2-click" href="#page2">Page Two</a></li>
+            <li><a href="#page3">Page Three</a></li>
+			<li><a href="#page4">Page Four</a></li>
+            <li><a href="#page5">Page Four</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page2">
+	<div data-role="header">
+		<h1>Migration Pending</h1>
+	</div>
+	<div data-role="content">
+    	
+		<ul data-role="listview" id="listitem2" data-inset="true" >
+        </ul>	
+       
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page3">
+	<div data-role="header">
+		<h1>Jumpering Pending</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page4">
+	<div data-role="header">
+		<h1>Soft-Freeze</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page5">
+	<div data-role="header">
+		<h1>Hard-Freeze</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+</body>
+</html>

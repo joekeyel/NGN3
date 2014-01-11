@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_schedule" value="name:id;datatype:int,name:region;datatype:string,name:site_name;datatype:string,name:site_abbr;datatype:string,name:abbr;datatype:string,name:totalwsub;datatype:int,name:soft_date;datatype:date,name:jump_date;datatype:date,name:mig_date;datatype:date,name:mr_pic;datatype:string,name:site_pic;datatype:string,name:site_pas;datatype:string,name:subcon;datatype:string,name:jump_date_str;datatype:string,name:mig_date_str;datatype:string" />
+</info>
