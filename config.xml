@@ -4,13 +4,13 @@
     id        = "com.phonegap.example"
     version   = "1.0.0">
 
-<name>MCC Online</name>
+<name>NGN</name>
 
 <description>
 MCC Online Apps
 </description>
 
-<author href="https://example.com" email="isyraf@tm.com.my">
+<author email="isyraf@tm.com.my">
 Hasanul Isyraf
 </author>
 
