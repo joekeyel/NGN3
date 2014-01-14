@@ -30,7 +30,7 @@ $('#submitButton').click(function(){
      success: function(data){
 		 var successdata=data;
          if(data){
-			 window.location.replace("index2.php?username="+username+"&lat="+lat+"&lng="+lng+"&location="+data);
+			 window.location.replace("index2.html");
           
          }else if(!data){
              alert("Authentication Invalid. Please try again!");
