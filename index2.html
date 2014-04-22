@@ -3,13 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>jQuery Mobile Web App</title>
-<link href="jquery.mobile.theme-1.0.min.css" rel="stylesheet" type="text/css"/>
-<link href="jquery.mobile.structure-1.0.min.css" rel="stylesheet" type="text/css"/>
-<link href="css/themes1/jquery.mobile.icons.min.css" rel="stylesheet" type="text/css"/>
-<link href="css/themes1/ngn_migration1.css" rel="stylesheet" type="text/css"/>
-<link href="css/themes1/ngn_migration1.min.css" rel="stylesheet" type="text/css"/>
-<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
-<script src="jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script  type="text/javascript">
 $(function () {
 $("#page2-click").click(function(){
@@ -41,7 +38,7 @@ $("#page3-click").click(function(){
         $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending4.php?jsoncallback=?", function(data){
             
             $.each(data, function(i,outputt){                   
-            items += '<li class="info-panel2"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.mig_date+ '</a></li>';
+            items += '<li class="info-panel2"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.jump_date+ '</a></li>';
             });
            $('#listitem3').append(items).promise().done(function () {
 			   $(this).listview("refresh");
@@ -64,7 +61,7 @@ $("#page4-click").click(function(){
         $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending5.php?jsoncallback=?", function(data){
             
             $.each(data, function(i,outputt){                   
-            items += '<li class="info-panel3"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.mig_date+ '</a></li>';
+            items += '<li class="info-panel3"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.soft_date+ '</a></li>';
             });
            $('#listitem4').append(items).promise().done(function () {
 			   $(this).listview("refresh");
@@ -105,7 +102,7 @@ $("#page5-click").click(function(){
 				 
  
 $("#logout").click(function(){
-	 window.location.replace("index.html");
+	 window.location.replace("index.php");
           
 	});
 
@@ -126,26 +123,26 @@ $("#logout").click(function(){
 
 
 <div data-role="page" id="page">
-	<div data-role="header" data-theme="b"><a href="#"  data-role="button" id="logout">Log Out</a>
+	<div data-role="header" data-theme="b"><a href="#"  data-role="button" id="logout" data-transition="flip">Log Out</a>
 		<h1>NGN Migration</h1>
 	</div>
 	<div data-role="content"><p>
     Welcome 
     </p>
 	  <ul data-role="listview">
-	    <li><a id="page2-click" href="#page2">Migration Pending</a></li>
-          <li><a id="page3-click" href="#page3">Jumpering Pending</a></li>
-		  <li><a id="page4-click" href="#page4">Soft-Freeze</a></li>
-          <li><a id="page5-click" href="#page5">All Migration</a></li>
+	    <li><a id="page2-click" href="#page2" data-transition="flow" >Migration Pending</a></li>
+          <li><a id="page3-click" href="#page3" data-transition="flow" >Jumpering Pending</a></li>
+		  <li><a id="page4-click" href="#page4" data-transition="flow" >Soft-Freeze</a></li>
+          <li><a id="page5-click" href="#page5" data-transition="flow" >All Migration</a></li>
 		</ul>		
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4>NGN Migration</h4>
 	</div>
 </div>
 
 <div data-role="page" id="page2">
-	<div data-role="header"><a href="#" data-rel="back" data-role="button">Go back</a>
+	<div data-role="header"><a href="#" data-rel="back" data-role="button" data-transition="flip">Go back</a>
 		<h1>Migration Pending</h1>
 	</div>
 	<div data-role="content">
@@ -170,7 +167,7 @@ $("#logout").click(function(){
         </ul>	
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4>NGN Migration</h4>
 	</div>
 </div>
 
