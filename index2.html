@@ -12,38 +12,44 @@ $(function () {
 $("#page2-click").click(function(){
 		
 		 items ='';
-        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending3.php?jsoncallback=?", function(data){
+        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending3.php?jsoncallback=?", function(info){
             
-            $.each(data, function(i,outputt){                   
-            items += '<li class="info-panel"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.mig_date+ '</a></li>';
-            });
+            $.each(info, function(i,outputt){                   
+            items += '<li class="info-panel" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt.site_name+":"+ outputt.site_abbr+ '</h2><p>'+outputt.mig_date +'</p></a><a href="#">   </a></li>';
+			
+			
+			});
            $('#listitem2').append(items).promise().done(function () {
-			   $(this).listview("refresh");
-			     $(".info-panel").click(function(){
-			      $("#details-page").data("data",data[this.id])
+			
+			    $(this).on("click", ".info-panel", function (e) {
+            e.preventDefault();
+			     
+			      $("#details-page").data("info", info[this.id])
 			      $.mobile.changePage("#details-page");
 			         
 			       });
+				     $(this).listview("refresh");
 			   });
 
       
         
             });
-			
+		
 		 });// JavaScript Document
 		 
 $("#page3-click").click(function(){
 		
 		 items ='';
-        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending4.php?jsoncallback=?", function(data){
+        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending4.php?jsoncallback=?", function(info){
             
-            $.each(data, function(i,outputt){                   
-            items += '<li class="info-panel2"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.jump_date+ '</a></li>';
-            });
+            $.each(info, function(i,outputt){                   
+            items += '<li class="info-panel2" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt.site_name+":"+ outputt.site_abbr+ '</h2><p>'+outputt.jump_date +'</p></a><a href="#">   </a></li>';
+			});
            $('#listitem3').append(items).promise().done(function () {
 			   $(this).listview("refresh");
-			     $(".info-panel2").click(function(){
-			      $("#details-page").data("data",data[this.id])
+			     $(this).on("click", ".info-panel2", function (e) {
+            e.preventDefault();
+			      $("#details-page").data("info",info[this.id])
 			      $.mobile.changePage("#details-page");
 			         
 			       });
@@ -58,15 +64,16 @@ $("#page3-click").click(function(){
 $("#page4-click").click(function(){
 		
 		 items ='';
-        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending5.php?jsoncallback=?", function(data){
+        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending5.php?jsoncallback=?", function(info){
             
-            $.each(data, function(i,outputt){                   
-            items += '<li class="info-panel3"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.soft_date+ '</a></li>';
-            });
+            $.each(info, function(i,outputt){                   
+           items += '<li class="info-panel3" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt.site_name+":"+ outputt.site_abbr+ '</h2><p>'+outputt.soft_date +'</p></a><a href="#">   </a></li>';
+			});
            $('#listitem4').append(items).promise().done(function () {
 			   $(this).listview("refresh");
-			     $(".info-panel3").click(function(){
-			      $("#details-page").data("data",data[this.id])
+			    $(this).on("click", ".info-panel3", function (e) {
+            e.preventDefault();
+			      $("#details-page").data("info",info[this.id])
 			      $.mobile.changePage("#details-page");
 			         
 			       });
@@ -80,18 +87,20 @@ $("#page4-click").click(function(){
 $("#page5-click").click(function(){
 		
 		 items ='';
-        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending6.php?jsoncallback=?", function(data){
+        $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending6.php?jsoncallback=?", function(info){
             
-            $.each(data, function(i,outputt){                   
-            items += '<li class="info-panel4"><a href="#" id="' + 'i ">' +outputt.site_name+":"+ outputt.mig_date+ '</a></li>';
-            });
+            $.each(info, function(i,outputt){                   
+            items += '<li class="info-panel4" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt.site_name+":"+ outputt.site_abbr+ '</h2><p>'+outputt.mig_date +'</p></a><a href="#">   </a></li>';
+			});
            $('#listitem5').append(items).promise().done(function () {
-			   $(this).listview("refresh");
-			     $(".info-panel4").click(function(){
-			      $("#details-page").data("data",data[this.id])
+			  
+			     $(this).on("click", ".info-panel4", function (e) {
+            e.preventDefault();
+			      $("#details-page").data("info", info[this.id])
 			      $.mobile.changePage("#details-page");
 			         
 			       });
+				    $(this).listview("refresh");
 			   });
 
       
@@ -106,6 +115,23 @@ $("#logout").click(function(){
           
 	});
 
+$(document).on("pagebeforeshow", "#details-page", function () {
+    //get from data - you put this here when the "a" wa clicked in the previous page
+    var info = $(this).data("info");
+    //string to put HTML in
+    var info_view = "";
+    //use for..in to iterate through object
+    for (var key in info) {
+        //Im using grid layout here.
+        //use any kind of layout you want.
+        //key is the key of the property in the object 
+        //if obj = {name: 'k'}
+        //key = name, value = k
+        info_view += '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-bar field" style="font-weight : bold; text-align: left;">' + key + '</div></div><div class="ui-block-b"><div class="ui-bar value" style="width : 75%">' + info[key] + '</div></div></div>';
+    }
+    //add this to html
+    $(this).find("[data-role=content]").html(info_view);
+});
 });
 
 
@@ -130,10 +156,12 @@ $("#logout").click(function(){
     Welcome 
     </p>
 	  <ul data-role="listview">
-	    <li><a id="page2-click" href="#page2" data-transition="flow" >Migration Pending</a></li>
-          <li><a id="page3-click" href="#page3" data-transition="flow" >Jumpering Pending</a></li>
-		  <li><a id="page4-click" href="#page4" data-transition="flow" >Soft-Freeze</a></li>
-          <li><a id="page5-click" href="#page5" data-transition="flow" >All Migration</a></li>
+	    <li><a id="page2-click" href="#page2" data-transition="flow" ><img src="images/logo-tm.png"><h2>Migration Pending</h2><p>Filter base on migration date</p></a><a href="#"></a></li>
+          <li><a id="page3-click" href="#page3" data-transition="flow" ><img src="images/logo-tm.png"><h2>Jumpering Pending</h2><p>Filter base on jumpering date</p></a><a href="#"></a></li>
+		  <li><a id="page4-click" href="#page4" data-transition="flow" ><img src="images/logo-tm.png"><h2>Soft-Freeze</h2><p>Filter base on freezing date</p></a><a href="#"></a></li>
+          <li><a id="page5-click" href="#page5" data-transition="flow" ><img src="images/logo-tm.png"><h2>All Migration</h2><p>All Migration Site</p></a><a href="#"></a></li>
+          <li><a id="page5-click" href="#page6" data-transition="flow" ><img src="images/logo-tm.png"><h2>Staff Locator</h2><p>Staff Login Record</p></a><a href="#"></a></li>
+
 		</ul>		
 	</div>
 	<div data-role="footer">
@@ -142,7 +170,7 @@ $("#logout").click(function(){
 </div>
 
 <div data-role="page" id="page2">
-	<div data-role="header"><a href="#" data-rel="back" data-role="button" data-transition="flip">Go back</a>
+	<div data-role="header"><a href="#" data-rel="back" data-role="button" >Go back</a>
 		<h1>Migration Pending</h1>
 	</div>
 	<div data-role="content">
@@ -153,7 +181,7 @@ $("#logout").click(function(){
        
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4>NGN Migration</h4>
 	</div>
 </div>
 
@@ -181,7 +209,7 @@ $("#logout").click(function(){
         </ul>	
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4>NGN Migration</h4>
 	</div>
 </div>
 
@@ -195,14 +223,14 @@ $("#logout").click(function(){
         </ul>		
 	</div>
 	<div data-role="footer">
-		<h4>Page Footer</h4>
+		<h4>NGN Migration</h4>
 	</div>
 </div>
 
 <div data-role="page" id="details-page">
     <div data-role="header" data-theme="b"><a href="#" data-rel="back" data-role="button">Go back</a>
 
-         <h1>Employee Details</h1>
+         <h1>Site Details</h1>
 
     </div>
     <div data-role="content">
