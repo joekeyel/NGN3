@@ -15,7 +15,7 @@ $("#page2-click").click(function(){
         $.getJSON("http://58.27.84.166/mcconline/migrate/json_migration_pending3.php?jsoncallback=?", function(info){
             
             $.each(info, function(i,outputt){                   
-            items += '<li class="info-panel" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt.site_name+":"+ outputt.site_abbr+ '</h2><p>'+outputt.mig_date +'</p></a><a href="#">   </a></li>';
+            items += '<li ><a class="info-panel" id="'+i+'" href="#" data-transition="flip"  ><img src="images/logo-tm.png"><h2>' +outputt.site_name+":"+ outputt.site_abbr+ '</h2><p>'+outputt.mig_date +'</p></a><a href="#">   </a></li>';
 			
 			
 			});
@@ -107,6 +107,56 @@ $("#page5-click").click(function(){
         
             });
 			
+		 });		
+
+$("#page6-click").click(function(){
+		
+		 items ='';
+        $.getJSON("http://58.27.84.166/mcconline/migrate/Staff_login_mobile.php?jsoncallback=?", function(info){
+            
+            $.each(info, function(i,outputt){                   
+            items += '<li class="info-panel5" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt[0]+":"+ outputt.staffid+ '</h2><p>'+outputt.location +'</p></a><a href="#">   </a></li>';
+			});
+           $('#listitem6').append(items).promise().done(function () {
+			  
+			     $(this).on("click", ".info-panel5", function (e) {
+            e.preventDefault();
+			      $("#details-page").data("info", info[this.id])
+			      $.mobile.changePage("#details-page");
+			         
+			       });
+				    $(this).listview("refresh");
+			   });
+
+      
+        
+            });
+			
+		 });		 
+		  
+$("#page7-click").click(function(){
+		
+		 items ='';
+        $.getJSON("http://58.27.84.166/mcconline/migrate/dspfbjson.php?jsoncallback=?", function(info){
+            
+            $.each(info, function(i,outputt){                   
+            items += '<li class="info-panel6" id="'+i+'"><a href="#"  ><img src="images/logo-tm.png"><h2>' +outputt.sitename+":Total DSP "+ outputt.totaldsp+ '</h2><p>Total FB '+outputt.totalfb +' Last Update:'+outputt.fb_date+'</p></a><a href="#">   </a></li>';
+			});
+           $('#listitem7').append(items).promise().done(function () {
+			  
+			     $(this).on("click", ".info-panel6", function (e) {
+            e.preventDefault();
+			      $("#details-page").data("info", info[this.id])
+			      $.mobile.changePage("#details-page");
+			         
+			       });
+				    $(this).listview("refresh");
+			   });
+
+      
+        
+            });
+			
 		 });		 
 				 
  
@@ -151,16 +201,26 @@ $(document).on("pagebeforeshow", "#details-page", function () {
 <div data-role="page" id="page">
 	<div data-role="header" data-theme="b"><a href="#"  data-role="button" id="logout" data-transition="flip">Log Out</a>
 		<h1>NGN Migration</h1>
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left">Home</a>
 	</div>
 	<div data-role="content"><p>
-    Welcome 
+     <div data-role="navbar">
+      <ul>
+        <li><a href="#" data-icon="plus">More</a></li>
+        <li><a href="#" data-icon="minus">Less</a></li>
+        <li><a href="#" data-icon="delete">Delete</a></li>
+        <li><a href="#" data-icon="check">Like</a></li>
+        <li><a href="#" data-icon="info">Information</a></li>
+      </ul>
+    </div>
     </p>
 	  <ul data-role="listview">
-	    <li><a id="page2-click" href="#page2" data-transition="flow" ><img src="images/logo-tm.png"><h2>Migration Pending</h2><p>Filter base on migration date</p></a><a href="#"></a></li>
+	    <li><a id="page2-click" href="#page2" data-transition="flip" ><img src="images/logo-tm.png"><h2>Migration Pending</h2><p>Filter base on migration date</p></a><a href="#"></a></li>
           <li><a id="page3-click" href="#page3" data-transition="flow" ><img src="images/logo-tm.png"><h2>Jumpering Pending</h2><p>Filter base on jumpering date</p></a><a href="#"></a></li>
 		  <li><a id="page4-click" href="#page4" data-transition="flow" ><img src="images/logo-tm.png"><h2>Soft-Freeze</h2><p>Filter base on freezing date</p></a><a href="#"></a></li>
           <li><a id="page5-click" href="#page5" data-transition="flow" ><img src="images/logo-tm.png"><h2>All Migration</h2><p>All Migration Site</p></a><a href="#"></a></li>
-          <li><a id="page5-click" href="#page6" data-transition="flow" ><img src="images/logo-tm.png"><h2>Staff Locator</h2><p>Staff Login Record</p></a><a href="#"></a></li>
+          <li><a id="page6-click" href="#page6" data-transition="flow" ><img src="images/logo-tm.png"><h2>Staff Locator</h2><p>Staff Login Record</p></a><a href="#"></a></li>
+           <li><a id="page7-click" href="#page7" data-transition="flow" ><img src="images/logo-tm.png"><h2>Discrepency Feedback</h2><p>Discrepency for Active Site Now</p></a><a href="#"></a></li>
 
 		</ul>		
 	</div>
@@ -170,12 +230,12 @@ $(document).on("pagebeforeshow", "#details-page", function () {
 </div>
 
 <div data-role="page" id="page2">
-	<div data-role="header"><a href="#" data-rel="back" data-role="button" >Go back</a>
+	<div data-role="header"><a class="ui-btn ui-corner-all ui-shadow ui-icon-home ui-btn-icon-left" href="#" data-rel="back" data-role="button" >Go back</a>
 		<h1>Migration Pending</h1>
 	</div>
 	<div data-role="content">
     	
-		<ul data-role="listview" id="listitem2" data-inset="true"  >
+		<ul data-role="listview" id="listitem2" data-inset="true" data-filter="true"  >
         <li data-role="list-divider"  role="heading">Site</li>
         </ul>	
        
@@ -190,7 +250,7 @@ $(document).on("pagebeforeshow", "#details-page", function () {
 		<h1>Jumpering Pending</h1>
 	</div>
 	<div data-role="content">	
-		<ul data-role="listview" id="listitem3" data-inset="true"  >
+		<ul data-role="listview" id="listitem3" data-inset="true" data-filter="true" >
         <li data-role="list-divider"  role="heading">Site</li>
         </ul>	
 	</div>
@@ -204,7 +264,7 @@ $(document).on("pagebeforeshow", "#details-page", function () {
 		<h1>Soft-Freeze</h1>
 	</div>
 	<div data-role="content">	
-	<ul data-role="listview" id="listitem4" data-inset="true"  >
+	<ul data-role="listview" id="listitem4" data-inset="true" data-filter="true" >
         <li data-role="list-divider"  role="heading">Site</li>
         </ul>	
 	</div>
@@ -218,7 +278,7 @@ $(document).on("pagebeforeshow", "#details-page", function () {
 		<h1>All Migration</h1>
 	</div>
 	<div data-role="content">	
-		<ul data-role="listview" id="listitem5" data-inset="true"  >
+		<ul data-role="listview" id="listitem5" data-inset="true" data-filter="true" >
         <li data-role="list-divider"  role="heading">Site</li>
         </ul>		
 	</div>
@@ -226,6 +286,35 @@ $(document).on("pagebeforeshow", "#details-page", function () {
 		<h4>NGN Migration</h4>
 	</div>
 </div>
+
+<div data-role="page" id="page6">
+	<div data-role="header"><a href="#" data-rel="back" data-role="button">Go back</a>
+		<h1>Staff Locator</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview" id="listitem6" data-inset="true" data-filter="true" >
+        <li data-role="list-divider"  role="heading">Sstaff Name</li>
+        </ul>		
+	</div>
+	<div data-role="footer">
+		<h4>NGN Migration</h4>
+	</div>
+</div>
+
+<div data-role="page" id="page7">
+	<div data-role="header"><a href="#" data-rel="back" data-role="button">Go back</a>
+		<h1>Discrepency Report</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview" id="listitem7" data-inset="true" data-filter="true" >
+        <li data-role="list-divider"  role="heading">Active Site</li>
+        </ul>		
+	</div>
+	<div data-role="footer">
+		<h4>NGN Migration</h4>
+	</div>
+</div>
+
 
 <div data-role="page" id="details-page">
     <div data-role="header" data-theme="b"><a href="#" data-rel="back" data-role="button">Go back</a>

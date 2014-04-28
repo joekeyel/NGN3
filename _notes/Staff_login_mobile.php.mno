@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_migration_schedule" value="name:idstaff_locate;datatype:int,name:staffid;datatype:string,name:location;datatype:string,name:date;datatype:timestamp" />
+</info>
