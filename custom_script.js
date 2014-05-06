@@ -1,3 +1,4 @@
+if(navigator.geolocation){
 navigator.geolocation.getCurrentPosition (function (pos)
 
 {
@@ -8,7 +9,8 @@ navigator.geolocation.getCurrentPosition (function (pos)
 
  
 
-});    
+});    }
+
 $(document).ready(function() {
 
  
